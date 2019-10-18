@@ -17,16 +17,14 @@ public class MyLinkedList<T> implements Iterable<T> {
 	}
 	
 	public T addEnd(T item) {
-		if(head == null) {
+		if (head == null) {
 			initialize(item);
+		} else if (head == tail) {
+			tail = new Node<T>(item);
+			head.setNext(tail);
 		} else {
-			if(head == tail) {
-				tail = new Node<T>(item);
-				head.setNext(tail);
-			} else {
-				tail.setNext(new Node<T>(item));
-				tail = tail.getNext();
-			}
+			tail.setNext(new Node<T>(item));
+			tail = tail.getNext();
 		}
 		
 		return tail.getValue();
