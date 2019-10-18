@@ -20,13 +20,13 @@ public class MyLinkedList<T> implements Iterable<T> {
 		if(head == null) {
 			initialize(item);
 		} else {
-			Node<T> tmp = new Node<T>(item);
-			Node<T> last = head;
-			while(last.hasNext()) {
-				last = last.getNext();
+			if(head == tail) {
+				tail = new Node<T>(item);
+				head.setNext(tail);
+			} else {
+				tail.setNext(new Node<T>(item));
+				tail = tail.getNext();
 			}
-			last.setNext(tmp);
-			tail = tmp;
 		}
 		
 		return tail.getValue();
